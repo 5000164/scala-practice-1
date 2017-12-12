@@ -3,12 +3,14 @@ package jp._5000164.scala_practice_1
 object _6_CompanionObjects extends App {
   // TODO: コンパニオンオブジェクトについてもっと調べる
 
+  val accumulator = new SpacerAccumulator
+  // println(accumulator.s) // private なフィールドなのでアクセスできない
+
   println(SpacerAccumulator.spacing("Hello, world!"))
   println(SpacerAccumulator.spacing("Hello, world!"))
 }
 
 class SpacerAccumulator {
-  // TODO: アクセスできないことを確認する
   private var s = ""
 
   // TODO: 副作用について書く
@@ -30,6 +32,7 @@ object SpacerAccumulator {
       cache(s)
     else {
       val accumulator = new SpacerAccumulator
+      println(accumulator.s) // コンパニオンオブジェクトなので private なフィールドでもアクセスできる
       for (c <- s)
         accumulator.combine(c, " ")
       val result = accumulator.combined()
