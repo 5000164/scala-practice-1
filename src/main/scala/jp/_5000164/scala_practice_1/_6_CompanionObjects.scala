@@ -3,15 +3,15 @@ package jp._5000164.scala_practice_1
 object _6_CompanionObjects extends App {
   // TODO: コンパニオンオブジェクトについてもっと調べる
 
-  val accumulator = new SpacerAccumulator
-  println(accumulator.s)
+  println(SpacerAccumulator.spacing("Hello, world!"))
+  println(SpacerAccumulator.spacing("Hello, world!"))
 
-  println(SpacerAccumulator.spacing("Hello, world!"))
-  println(SpacerAccumulator.spacing("Hello, world!"))
+  Tester.assertNoAccess()
 }
 
 class SpacerAccumulator {
-  var s = "test"
+  private var s = "spaced:"
+  val publicString = "accessible"
 
   // TODO: 副作用について書く
   def combine(c: Char, spacer: String): Unit = s += spacer + c
@@ -31,12 +31,21 @@ object SpacerAccumulator {
     // println("cached") // 単一の結果式ではなくなるので中括弧を使用しないとエラーになる
       cache(s)
     else {
-      val accumulator = new SpacerAccumulator
-      println(accumulator.s) // コンパニオンオブジェクトなので private なフィールドでもアクセスできる
+      val sa = new SpacerAccumulator
+      println("default value is " + sa.s) // コンパニオンオブジェクトなので private なフィールドでもアクセスできる
+
       for (c <- s)
-        accumulator.combine(c, " ")
-      val result = accumulator.combined()
+        sa.combine(c, " ")
+      val result = sa.combined()
       cache += (s -> result)
       result
     }
+}
+
+object Tester {
+  def assertNoAccess(): Unit = {
+    val sa = new SpacerAccumulator
+    // println(sa.s) // private なフィールドなのでアクセスできない
+    println(sa.publicString) // private なフィールドではないのでアクセスできる
+  }
 }
