@@ -5,6 +5,7 @@ object _6_CompanionObjects extends App {
 
   println(SpacerAccumulator.spacing("Hello, world!"))
   println(SpacerAccumulator.spacing("Hello, world!"))
+  println(SpacerAccumulator.spacing("Hello again, world!"))
 
   Tester.assertNoAccess()
 }
@@ -25,11 +26,10 @@ object SpacerAccumulator {
   // TODO: WeakHashMap がどのような挙動をするのか調べる
   private val cache = mutable.WeakHashMap.empty[String, String]
 
-  // TODO: 同じ文字列を渡した場合にキャッシュが使われるか確認する
   // 単一の結果式を計算する場合は中括弧を省略できる
   def spacing(s: String): String =
     if (cache.contains(s))
-      cache(s)
+      cache(s) + " by cache"
     else {
       val sa = new SpacerAccumulator
       println("default value is " + sa.s) // コンパニオンオブジェクトなので private なフィールドでもアクセスできる
