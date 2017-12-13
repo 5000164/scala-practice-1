@@ -4,14 +4,14 @@ object _6_CompanionObjects extends App {
   // TODO: コンパニオンオブジェクトについてもっと調べる
 
   val accumulator = new SpacerAccumulator
-  // println(accumulator.s) // private なフィールドなのでアクセスできない
+  println(accumulator.s)
 
   println(SpacerAccumulator.spacing("Hello, world!"))
   println(SpacerAccumulator.spacing("Hello, world!"))
 }
 
 class SpacerAccumulator {
-  private var s = ""
+  var s = "test"
 
   // TODO: 副作用について書く
   def combine(c: Char, spacer: String): Unit = s += spacer + c
