@@ -5,9 +5,9 @@ object _6_CompanionObjects extends App {
 
   println(SpacerAccumulator.getCache()) // Map()
 
-  println(SpacerAccumulator.spacing("Hello, world!"))
-  println(SpacerAccumulator.spacing("Hello, world!"))
-  println(SpacerAccumulator.spacing("Hello again, world!"))
+  println(SpacerAccumulator.spacing("Hello, world!")) // spaced: H e l l o ,   w o r l d !
+  println(SpacerAccumulator.spacing("Hello, world!")) // spaced: H e l l o ,   w o r l d ! by cache
+  println(SpacerAccumulator.spacing("Hello again, world!")) // spaced: H e l l o   a g a i n ,   w o r l d !
 
   println(SpacerAccumulator.getCache()) // Map(Hello, world! -> spaced: H e l l o ,   w o r l d !, Hello again, world! -> spaced: H e l l o   a g a i n ,   w o r l d !)
 
@@ -36,7 +36,9 @@ object SpacerAccumulator {
       cache(s) + " by cache"
     else {
       val sa = new SpacerAccumulator
-      println("default value is " + sa.s) // コンパニオンオブジェクトなので private なフィールドでもアクセスできる
+
+      // コンパニオンオブジェクトなので private なフィールドでもアクセスできる
+      println("default value is " + sa.s) // default value is spaced:
 
       for (c <- s)
         sa.combine(c, " ")
@@ -51,7 +53,11 @@ object SpacerAccumulator {
 object Tester {
   def assertNoAccess(): Unit = {
     val sa = new SpacerAccumulator
-    // println(sa.s) // private なフィールドなのでアクセスできない
-    println(sa.publicString) // private なフィールドではないのでアクセスできる
+
+    // private なフィールドなのでアクセスできない
+    // println(sa.s)
+
+    // private なフィールドではないのでアクセスできる
+    println(sa.publicString) // accessible
   }
 }
