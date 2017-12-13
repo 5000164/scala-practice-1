@@ -25,10 +25,10 @@ object SpacerAccumulator {
   // TODO: WeakHashMap がどのような挙動をするのか調べる
   private val cache = mutable.WeakHashMap.empty[String, String]
 
-  // TODO: 単一の結果式を計算するだけなら中括弧を省略できるということを確認する
   // TODO: 同じ文字列を渡した場合にキャッシュが使われるか確認する
   def spacing(s: String): String =
     if (cache.contains(s))
+    // println("cached") // 単一の結果式ではなくなるので中括弧を使用しないとエラーになる
       cache(s)
     else {
       val accumulator = new SpacerAccumulator
