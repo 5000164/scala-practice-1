@@ -1,5 +1,11 @@
 package jp._5000164.scala_practice_1
 
+/**
+  * Array と List の使い方を確認する
+  *
+  * 初期化方法について確認する
+  * 生成後に更新できるかを確認する
+  */
 object _3_ArrayList extends App {
   // Array クラスのインスタンスを値と型でパラメーター化
   // パラメーター化とは生成するインスタンスの構成を設定すること
@@ -42,7 +48,7 @@ object _3_ArrayList extends App {
   // シーケンスとは要素が連続したもののこと
   val greetStrings6 = List("Hello", ", ", "world!\n")
   // greetStrings6 = List("Hello", " again, ", "world!\n") // 再代入不可でエラー
-  // greetStrings6(1) = " again, "                         // update メソッドが実装されていないのでエラー
+  // greetStrings6(1) = " again, " // update メソッドが実装されていないのでエラー
   for (i <- 0 to 2)
     print(greetStrings6(i)) // Hello, world!
 }

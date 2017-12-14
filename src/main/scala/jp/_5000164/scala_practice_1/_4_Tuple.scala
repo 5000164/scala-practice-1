@@ -1,5 +1,10 @@
 package jp._5000164.scala_practice_1
 
+/**
+  * タプルの使い方を確認する
+  *
+  * タプルの生成方法とアクセスする方法を確認する
+  */
 object _4_Tuple extends App {
   // タプルは異なる型を持つことができる
   val pair = (1, "1")
