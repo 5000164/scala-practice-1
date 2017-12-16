@@ -39,7 +39,10 @@ class SpacerAccumulator {
   private var s = "spaced:"
   val publicString = "accessible"
 
-  // TODO: 副作用について書く
+  // メソッドの結果型は推論可能でも、コードを読む時に頭のなかで推論しなければならなくなるため結果型を明示的に提示する方がよい
+  // 結果型が Unit のメソッドは副作用を生じさせるために実行される
+  // この場合は s への再代入が副作用となる
+  // 副作用だけを目的として実行されるメソッドは手続きと呼ぶ
   def combine(c: Char, spacer: String): Unit = s += spacer + c
 
   def combined(): String = s
