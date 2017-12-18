@@ -28,6 +28,8 @@ object _7_WeakHashMap extends App {
   Platform.collectGarbage
 
   // TODO: WeakHashMap の要素がなぜ消えないのか調べる
+  // ドキュメントに使用している JVM に依存すると書いてあったのでコンパイルして実行を試したが結果は変わらなかった
+  // https://www.scala-lang.org/api/current/scala/compat/Platform$.html#collectGarbage():Unit
   println("")
   println(keys)
   println(cache)
