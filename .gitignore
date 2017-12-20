@@ -1,2 +1,4 @@
 .idea/
 target/
+cacerts
+charles-ssl-proxying-certificate.cer

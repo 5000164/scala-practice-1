@@ -8,13 +8,16 @@ import com.softwaremill.sttp._
   * 手元で動かしている Charles のプロキシーを通して通信内容を見る
   */
 object _9_Sttp extends App {
-  // TODO: Charles の証明書を読み込んでから実行するようにする
+  // Charles の発行している証明書を信頼する必要がある
+  // 実行時に javaOptions で証明書の設定をする必要がある
+  // TODO: 実行方法のブログを書いたらリンクを貼る
 
   implicit val backend = HttpURLConnectionBackend(options = SttpBackendOptions.httpProxy("localhost", 8888))
-  val temp = sttp
+  sttp
     .get(uri"https://www.google.co.jp/")
     .send()
-    .body
-
-  println(temp)
+    .body match {
+    case Right(response) => println(response) // Web サイトのコンテンツが表示される
+    case Left(error) => println(error) // status が 2xx じゃない場合にエラー内容が表示される
+  }
 }
