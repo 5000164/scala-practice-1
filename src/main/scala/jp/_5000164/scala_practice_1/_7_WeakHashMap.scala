@@ -3,34 +3,38 @@ package jp._5000164.scala_practice_1
 import scala.collection.mutable
 import scala.compat.Platform
 
+/**
+  * WeakHashMap について学ぶ
+  *
+  * WeakHashMap に値を設定した後にガベージコレクションを実行して結果がどうなるのかを確認する
+  */
 object _7_WeakHashMap extends App {
-  private val cache = mutable.WeakHashMap.empty[String, String]
-  private val keys = mutable.Map(1 -> "one", 2 -> "two", 3 -> "three")
-
-  println("初期値")
-  println(keys)
+  // WeakHashMap を生成してプリミティブ型の変数と参照型の変数をキーとして要素を追加する
+  val cache = mutable.WeakHashMap.empty[String, String]
+  var key1 = "key1"
+  cache += (key1 -> "key1")
+  var key2 = new String("key2")
+  cache += (key2 -> "key2")
   println(cache)
+  // Map(key1 -> key1, key2 -> key2)
 
-  cache += (keys(1) -> "one")
-  cache += (keys(2) -> "two")
-  cache += (keys(3) -> "three")
-
-  println("")
-  println(keys)
-  println(cache)
-
-  keys -= 1
-
-  println("")
-  println(keys)
-  println(cache)
-
+  // キーへの強参照があるのでガベージコレクションを実行しても要素が消えないことを確認する
   Platform.collectGarbage
-
-  // TODO: WeakHashMap の要素がなぜ消えないのか調べる
-  // ドキュメントに使用している JVM に依存すると書いてあったのでコンパイルして実行を試したが結果は変わらなかった
-  // https://www.scala-lang.org/api/current/scala/compat/Platform$.html#collectGarbage():Unit
-  println("")
-  println(keys)
   println(cache)
+  // Map(key1 -> key1, key2 -> key2)
+
+  // 挙動の違いを確認するためにプリミティブ型の変数への上書きと参照型の変数への上書きを行う
+  // この時点ではまだ WeakHashMap の要素は消えない
+  key1 = null
+  key2 = null
+  println(cache)
+  // Map(key1 -> key1, key2 -> key2)
+
+  // 参照型の変数をキーとしていた要素のみが消えていることを確認するためにガベージコレクションを実行する
+  Platform.collectGarbage
+  println(cache)
+  // Map(key1 -> key1)
+
+  // 参照型の変数へ null を代入することで生成されたオブジェクトへの強参照がなくなる
+  // キーであるオブジェクトへの強参照がないと判断されてガベージコレクションが実行されたタイミングで要素が削除される
 }
