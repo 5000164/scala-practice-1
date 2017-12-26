@@ -6,28 +6,44 @@ package jp._5000164.scala_practice_1
   * 分数を扱うクラスを実装することで設計について学ぶ
   */
 object _12_Rational extends App {
-  val x = new Rational(1, 2)
-  println(x.toString)
-
-  // new Rational(1, 0) // エラーとなる
-
-  val y = new Rational(3, 4)
-  println(x add y)
 
   class Rational(n: Int, d: Int) {
     require(d != 0)
-    val number: Int = n
-    val denom: Int = d
+    private val g = gcd(n.abs, d.abs)
+    val number = n / g
+    val denom = d / g
 
-    println(s"Created $number/$denom")
+    def this(n: Int) = this(n, 1)
 
-    override def toString = s"$number/$denom"
-
-    def add(that: Rational): Rational =
+    def +(that: Rational): Rational =
       new Rational(
         number * that.denom + that.number * denom,
         denom * that.denom
       )
+
+    def *(that: Rational): Rational =
+      new Rational(
+        number * that.number,
+        denom * that.denom
+      )
+
+    override def toString = s"$number/$denom"
+
+    private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
   }
 
+  val x = new Rational(1, 2)
+  println(s"x: ${x.getClass} = $x")
+
+  // new Rational(1, 0) // エラーとなる
+
+  val y = new Rational(3)
+  println(s"y: ${y.getClass} = $y")
+
+  val z = new Rational(66, 99)
+  println(s"z: ${z.getClass} = $z")
+
+  println(x + y)
+  println(y * z)
+  println(x + y * z)
 }
