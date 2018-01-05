@@ -5,11 +5,16 @@ package jp._5000164.scala_practice_1
   */
 object _13_FlatMap extends App {
   val list = List(List(List(1, 2), 3), List(4), 5)
-  println(list)
 
-  def mapFunction(list: List[Any]): List[Any] = list map {
-    case l: List[_] => mapFunction(l)
-    case v => v
+  def mapFunction(list: List[Any]): List[Any] = {
+    def mapR(l: List[Any]): List[Any] = l map {
+      case ll: List[_] => mapR(ll)
+      case v => List(v)
+    }
+
+    val wrap = mapR(list)
+    println(wrap)
+    wrap
   }
 
   val map = mapFunction(list)
