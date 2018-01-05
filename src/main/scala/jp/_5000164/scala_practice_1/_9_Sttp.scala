@@ -10,7 +10,7 @@ import com.softwaremill.sttp._
 object _9_Sttp extends App {
   // Charles の発行している証明書を信頼する必要がある
   // 実行時に javaOptions で証明書の設定をする必要がある
-  // TODO: 実行方法のブログを書いたらリンクを貼る
+  // 参考: http://blog.5000164.jp/2018-01-view_scala_traffic/
 
   implicit val backend = HttpURLConnectionBackend(options = SttpBackendOptions.httpProxy("localhost", 8888))
   sttp
