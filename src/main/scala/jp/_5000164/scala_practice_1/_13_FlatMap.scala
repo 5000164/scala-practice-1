@@ -9,24 +9,37 @@ object _13_FlatMap extends App {
   val list = List(List(List(1, 2), 3), List(4), 5)
 
   def mapFunction(list: List[Any]): List[Any] = {
-    val l: List[List[Any]] = list map {
-      case ll: List[_] => ll
+    println("mapFunction 呼び出し")
+    println(list)
+    val l = list map {
+      case l: List[_] => mapFunction(l)
       case v => List(v)
     }
+    println("List でラップ後")
+    println(l)
     val ll = l.flatten
-    if (ll.exists(v => v.isInstanceOf[List[Any]])) mapFunction(ll) else ll
+    println("flatten 後")
+    println(ll)
+    ll
   }
 
   val map = mapFunction(list)
+  println("結果")
   println(map)
-  // List(1, 2, 3, 4, 5)
 
-  def flatMapFunction(list: List[Any]): List[Any] = list flatMap {
-    case l: List[_] => flatMapFunction(l)
-    case v => List(v)
+  def flatMapFunction(list: List[Any]): List[Any] = {
+    println("flatMapFunction")
+    println(list)
+    val l = list flatMap {
+      case l: List[_] => flatMapFunction(l)
+      case v => List(v)
+    }
+    println("List でラップして flatten 後")
+    println(l)
+    l
   }
 
   val flatMap = flatMapFunction(list)
+  println("結果")
   println(flatMap)
-  // List(1, 2, 3, 4, 5)
 }
