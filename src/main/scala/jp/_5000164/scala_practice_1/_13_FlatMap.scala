@@ -1,7 +1,7 @@
 package jp._5000164.scala_practice_1
 
 /**
-  * flatMap ついて学ぶため
+  * flatMap について学ぶため
   *
   * List[Any] を flatten する処理を map と flatMap で書き比べてみる
   */
