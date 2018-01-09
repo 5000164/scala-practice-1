@@ -10,8 +10,8 @@ object _12_Rational extends App {
   class Rational(n: Int, d: Int) {
     require(d != 0)
     private val g = gcd(n.abs, d.abs)
-    val number = n / g
-    val denom = d / g
+    val number: Int = n / g
+    val denom: Int = d / g
 
     def this(n: Int) = this(n, 1)
 
