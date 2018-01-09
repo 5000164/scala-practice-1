@@ -21,11 +21,31 @@ object _12_Rational extends App {
         denom * that.denom
       )
 
+    def +(i: Int): Rational = new Rational(number + i * denom, denom)
+
+    def -(that: Rational): Rational =
+      new Rational(
+        number * that.denom - that.number * denom,
+        denom * that.denom
+      )
+
+    def -(i: Int): Rational = new Rational(number - i * denom, denom)
+
     def *(that: Rational): Rational =
       new Rational(
         number * that.number,
         denom * that.denom
       )
+
+    def *(i: Int): Rational = new Rational(number * i, denom)
+
+    def /(that: Rational): Rational =
+      new Rational(
+        number * that.denom,
+        denom * that.number
+      )
+
+    def /(i: Int): Rational = new Rational(number, denom * i)
 
     override def toString = s"$number/$denom"
 
@@ -39,4 +59,5 @@ object _12_Rational extends App {
   println(x + y)
   println(y * z)
   println(x + y * z)
+  println(x - 1)
 }
