@@ -33,15 +33,8 @@ object _12_Rational extends App {
   }
 
   val x = new Rational(1, 2)
-  println(s"x: ${x.getClass} = $x")
-
-  // new Rational(1, 0) // エラーとなる
-
   val y = new Rational(3)
-  println(s"y: ${y.getClass} = $y")
-
   val z = new Rational(66, 99)
-  println(s"z: ${z.getClass} = $z")
 
   println(x + y)
   println(y * z)
