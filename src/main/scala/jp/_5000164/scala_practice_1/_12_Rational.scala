@@ -59,8 +59,13 @@ object _12_Rational extends App {
   val z = new Rational(66, 99)
 
   println(x + y)
+  // 7/2
   println(y * z)
+  // 2/1
   println(x + y * z)
+  // 5/2
   println(x - 1)
+  // -1/2
   println(3 * x)
+  // 3/2
 }
