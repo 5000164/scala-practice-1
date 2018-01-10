@@ -52,6 +52,8 @@ object _12_Rational extends App {
     private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
   }
 
+  implicit def intToRational(x: Int): Rational = new Rational(x)
+
   val x = new Rational(1, 2)
   val y = new Rational(3)
   val z = new Rational(66, 99)
@@ -60,4 +62,5 @@ object _12_Rational extends App {
   println(y * z)
   println(x + y * z)
   println(x - 1)
+  println(3 * x)
 }
