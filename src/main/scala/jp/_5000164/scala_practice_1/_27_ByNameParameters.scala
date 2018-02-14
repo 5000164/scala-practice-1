@@ -19,4 +19,13 @@ object _27_ByNameParameters extends App {
   func1((x) => x > 0)
   func0(() => 1 > 0)
   funcByNameParameters(1 > 0)
+
+  val flag = false
+
+  def funcByName(func: => Boolean) = if (flag) func
+
+  def funcBool(func: Boolean) = if (flag) func
+
+  funcByName(1 / 0 == 0) // Don't throw error.
+  // funcBool(1 / 0 == 0) // Throw error.
 }
