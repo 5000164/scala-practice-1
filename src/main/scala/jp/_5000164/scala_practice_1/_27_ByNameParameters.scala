@@ -14,5 +14,9 @@ object _27_ByNameParameters extends App {
 
   def funcByNameParameters(func: => Boolean) = func
 
-  // TODO: 各関数を呼び出してみる
+  func3((x, y, z) => x + y + z > 0)
+  func2((x, y) => x + y > 0)
+  func1((x) => x > 0)
+  func0(() => 1 > 0)
+  funcByNameParameters(1 > 0)
 }
