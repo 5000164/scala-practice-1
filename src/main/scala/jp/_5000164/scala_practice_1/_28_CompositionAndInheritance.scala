@@ -10,4 +10,8 @@ object _28_CompositionAndInheritance extends App {
     def width: Int = if (height == 0) 0 else contents(0).length
   }
 
+  // パラメーターなしメソッドはフィールドでオーバーライドすることができる
+  // よってパラメーターフィールドで簡略化して記述することができる
+  class ArrayElement(val contents: Array[String]) extends Element
+
 }
